@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">CreativeMindsTask</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="go_to_owner_profile">Go To Owner Profile</string>
+    <string name="go_to_repo_url">Go To Repo Url</string>
+</resources>
