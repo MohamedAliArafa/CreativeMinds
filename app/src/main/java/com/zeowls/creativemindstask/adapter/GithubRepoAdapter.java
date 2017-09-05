@@ -65,21 +65,23 @@ public class GithubRepoAdapter extends RecyclerView.Adapter<GithubRepoAdapter.My
                 .inflate(mLayout, parent, false);
         return new MyViewHolder(itemView);
     }
-
+    GitHubResultModel mModel;
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        final GitHubResultModel model = mList.get(position);
-        holder.mTitleTextView.setText(model.getName());
-        holder.mDescTextView.setText(model.getDescription());
-        holder.mUserNameTextView.setText(model.getOwner().getLogin());
-        if (model.getFork()) {
+        mModel = mList.get(position);
+        holder.mTitleTextView.setText(mModel.getName());
+        holder.mDescTextView.setText(mModel.getDescription());
+        holder.mUserNameTextView.setText(mModel.getOwner().getLogin());
+        if (mModel.getFork()) {
             holder.itemView.setBackgroundColor(mContext.getResources().getColor(R.color.green));
+        }else {
+            holder.itemView.setBackgroundColor(mContext.getResources().getColor(android.R.color.white));
         }
         holder.itemView.setOnLongClickListener(
                 new View.OnLongClickListener() {
                     @Override
                     public boolean onLongClick(View view) {
-                        mPresenter.openDetails(model.getHtmlUrl(), model.getOwner().getHtmlUrl());
+                        mPresenter.openDetails(mModel.getHtmlUrl(), mModel.getOwner().getHtmlUrl());
                         return true;
                     }
                 }

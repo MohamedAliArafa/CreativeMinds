@@ -79,6 +79,7 @@ public class MainFragment extends Fragment implements MainContract.View, Lifecyc
 
     void refreshItems() {
         mAdapter.clear();
+        mPresenter.clearCache();
         mPresenter.getData();
     }
 

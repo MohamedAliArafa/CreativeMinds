@@ -45,6 +45,14 @@ public class MainPresenter implements MainContract.UserAction, LifecycleObserver
     }
 
 
+    @Override
+    public void clearCache() {
+        mRealm = Realm.getDefaultInstance();
+        mRealm.beginTransaction();
+        mRealm.delete(GitHubResultModel.class);
+        mRealm.commitTransaction();
+    }
+
     @OnLifecycleEvent(Lifecycle.Event.ON_START)
     @Override
     public void getData() {
@@ -78,6 +86,11 @@ public class MainPresenter implements MainContract.UserAction, LifecycleObserver
                 mView.hideProgress();
             }
         });
+    }
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
+    void onDestroy(){
+        mRealm.close();
     }
 
     @Override

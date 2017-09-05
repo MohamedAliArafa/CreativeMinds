@@ -18,6 +18,8 @@ public interface MainContract {
     }
 
     interface UserAction {
+        void clearCache();
+
         void getData();
 
         void openDetails(String repoURL, String ownerURL);
